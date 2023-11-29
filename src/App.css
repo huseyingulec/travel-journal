@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #7d314c;
+    color: white;
+}
+
+.nav--logo {
+    margin-right: 0.5em;
+}
+
+.nav--title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
