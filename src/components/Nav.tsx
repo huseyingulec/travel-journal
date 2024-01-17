@@ -1,4 +1,12 @@
 import { useState, useEffect } from "react";
+import {
+    HamburgerMenuIcon,
+    Cross1Icon,
+    MoonIcon,
+    SunIcon,
+    GlobeIcon,
+} from "@radix-ui/react-icons";
+import { Flex, Heading, Text } from "@radix-ui/themes";
 
 const Nav = () => {
     let Links = [
@@ -28,34 +36,40 @@ const Nav = () => {
         }
     };
     return (
-        <div className="sticky top-0 w-full bg-white shadow-md dark:bg-black dark:text-white dark:shadow-slate-900">
-            <div className="mx-auto max-w-screen-xl items-center justify-between px-7 py-2 md:flex md:pl-12">
-                <div className="flex cursor-pointer items-center text-2xl font-bold ">
-                    <span className="cursor-pointer pr-1 pt-1.5 text-2xl">
-                        <ion-icon name="earth"></ion-icon>
-                    </span>
-                    Huey's Travel Journal
-                </div>
+        <div className="sticky top-0 w-full shadow-md z-40 bg-white dark:bg-black dark:shadow-slate-900 ">
+            <Flex
+                mx="auto"
+                align="center"
+                justify="between"
+                px={"5"}
+                py={"2"}
+                className="max-w-screen-xl"
+            >
+                <Flex align="center">
+                    <GlobeIcon className="m-1" />
+                    <Heading weight="medium" size="5">
+                        Huey's Travel Journal
+                    </Heading>
+                </Flex>
 
                 <div
                     onClick={() => setOpen(!open)}
-                    className="absolute right-8 top-3.5 cursor-pointer text-3xl md:hidden "
+                    className="absolute right-8 top-3.5 cursor-pointer md:hidden "
                 >
-                    <ion-icon name={open ? "close" : "menu"}></ion-icon>
+                    {open ? <Cross1Icon /> : <HamburgerMenuIcon />}
                 </div>
 
                 <ul
                     className={`absolute left-0 z-[-1] w-full cursor-pointer pl-10 shadow-md transition-all ease-in md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 md:shadow-none dark:shadow-slate-900 ${
-                        open ? "top-14 bg-white dark:bg-black" : "top-[-490px]"
+                        open ? "top-9 bg-white dark:bg-black" : "top-[-490px]"
                     }`}
                 >
                     {Links.map(link => (
-                        <li
-                            key={link.name}
-                            className="my-4 text-xl md:mx-5 md:my-0 "
-                        >
+                        <li key={link.name} className="my-4 md:mx-5 md:my-0 ">
                             <a href={link.link} className="no-underline">
-                                {link.name}
+                                <Text size="4" weight="regular">
+                                    {link.name}
+                                </Text>
                             </a>
                         </li>
                     ))}
@@ -66,12 +80,12 @@ const Nav = () => {
                             toggleTheme(!isDarkMode);
                             setOpen(false); // Close the menu
                         }}
-                        className="my-4 h-6 text-xl md:mx-5 md:my-0"
+                        className="my-4 md:mx-5 md:my-0"
                     >
-                        <ion-icon name="moon"></ion-icon>
+                        {isDarkMode ? <SunIcon /> : <MoonIcon />}
                     </div>
                 </ul>
-            </div>
+            </Flex>
         </div>
     );
 };
